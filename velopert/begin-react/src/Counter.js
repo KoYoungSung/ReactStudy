@@ -1,23 +1,37 @@
-import React, { useReducer } from 'React'
+import React, { useReducer } from 'react'
 
 function reducer(state, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'INCREMENT':
             return state + 1;
-        case 'DECREMNET':
+        case 'DECREMENT':
             return state - 1;
-        default: 
+        default:
             return state;
     }
 }
 
-function Counter () {
-    const [number, dispatcher] = useReducer(reducer, 0)
+function Counter() {
+
+    const [number, dispatch] = useReducer(reducer, 0);
 
     const onIncrease = () => {
-        dispatcher({type:'INCREASE'})
+        dispatch({ type: 'INCREMENT' });
     };
-    //https://react.vlpt.us/basic/20-useReducer.html
+
+    const onDecrease = () => {
+        dispatch({ type: 'DECREMENT' });
+    };
+
+    return(
+        <div>
+            <h1>{number}</h1>
+            <button onClick={onIncrease}>+1</button>
+            <button onClick={onDecrease}>-1</button>
+        </div>
+    );
 
 
 }
+
+export default Counter;
